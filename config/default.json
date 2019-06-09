@@ -1,0 +1,22 @@
+{
+  "app": {
+    "name": "Account Management API",
+    "version": "0.0.1"
+  },
+  "signup": {
+    "retryLimit": 5,
+    "timeoutInSec": 60
+  },
+  "expiresIn": 60,
+  "retryLimit": 5,
+  "db": {
+    "host": "MONGO_DB_HOST",
+    "user": "MONGO_DB_USER",
+    "pass": "MONGO_DB_PASS",
+    "name": "accounts",
+    "col": {
+      "signup": "signup",
+      "users": "users"
+    }
+  }
+}

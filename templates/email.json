@@ -1,0 +1,21 @@
+{
+  "personalizations": [
+    {
+      "to": [
+        {
+          "email": "kensuke.mochinaga@gmail.com"
+        }
+      ],
+      "subject": "Authentication Code"
+    }
+  ],
+  "from": {
+    "email": "everlasting.mozzio@gmail.com"
+  },
+  "content": [
+    {
+      "type": "text/plain",
+      "value": "Hello, World!"
+    }
+  ]
+}

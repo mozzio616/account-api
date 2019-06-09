@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "name": "account-api",
+  "builds": [
+    { "src": "**/*.js", "use": "@now/node" },
+    { "src": "**/*.json", "use": "@now/static" },
+    { "src": "**/*.yaml", "use": "@now/static" }
+  ],
+   "routes": [
+    { "src": "(.*)", "dest": "/index.js" }
+  ],
+  "env": {
+    "SG_API_KEY": "@sg-api-key",
+    "WEBHOOK_URL": "@webhook-url",
+    "MONGO_DB_USER": "@mongo-db-user",
+    "MONGO_DB_PASS": "@mongo-db-pass",
+    "MONGO_DB_HOST": "@mongo-db-host"
+  }
+}

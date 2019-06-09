@@ -1,0 +1,229 @@
+swagger: "2.0"
+info:
+  description: Account Management API
+  version: 0.0.1
+  title: Account Management API
+tags:
+  - name: signup
+    description: get authorization code to sign up
+  - name: verify
+    description: verify your authorization code
+  - name: signin
+    description: sign in with username and password
+  - name: accounts
+    description: manage your account
+paths:
+  /signup:
+    post:
+      tags:
+        - signup
+      parameters:
+        - name: body
+          in: body
+          description: parameters to sign up
+          required: true
+          schema:
+            $ref: "#/definitions/Signup"
+      responses:
+        400:
+          description: missing required parameter
+          schema:
+            $ref: "#/definitions/Error"
+        409:
+          description: email already exists
+          schema:
+            $ref: "#/definitions/Error"
+  /verify:
+    post:
+      tags:
+        - verify
+      parameters:
+        - name: body
+          in: body
+          description: parameters to verify authorization code
+          required: true
+          schema:
+            $ref: "#/definitions/Verify"
+      responses:
+        400:
+          description: missing required parameter
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: incorrect token
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: email not found
+          schema:
+            $ref: "#/definitions/Error"
+  /signin:
+    post:
+      tags:
+        - signin
+      parameters:
+        - name: body
+          in: body
+          description: parameters to sign in
+          required: true
+          schema:
+            $ref: "#/definitions/Signin"
+      responses:
+        400:
+          description: missing required parameter
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: incorrect password
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: username not found
+          schema:
+            $ref: "#/definitions/Error"
+  /accounts/{username}:
+    get:
+      tags:
+        - accounts
+      description: get an account data
+      parameters:
+        - name: username
+          in: path
+          description: username
+          required: true
+          type: string
+      responses:
+        200:
+          description: return an account data
+          schema:
+            $ref: "#/definitions/Account"
+        400:
+          description: missing required parameter
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: username not found.
+          schema:
+            $ref: "#/definitions/Error"
+  /accounts/{username}/paymentmethods:
+    post:
+      tags:
+        - accounts
+      description: add new payment method
+      parameters:
+        - name: username
+          in: path
+          description: username
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: parameters to create a payment method
+          required: true
+          schema:
+            $ref: "#/definitions/PaymentMethod"
+      responses:
+        400:
+          description: missing required parameter
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: username not found
+          schema:
+            $ref: "#/definitions/Error"
+    get:
+      tags:
+        - accounts
+      description: get a liist of payment methods
+      parameters:
+        - name: username
+          in: path
+          description: username
+          required: true
+          type: string
+      responses:
+        200:
+          description: return a list of payment methods
+          schema:
+            type: object
+            properties:
+              paymentMethods:
+                type: array
+                items: 
+                  $ref: "#/definitions/PaymentMethod"
+        400:
+          description: missing required parameter
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: username not found.
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Signup:
+    type: object
+    properties:
+      email:
+        type: string
+        description: Email address
+        required: true
+      password:
+        type: string
+        description: Password
+        required: true
+      channel:
+        type: string
+        description: Slack channel (option)
+  Verify:
+    type: object
+    properties:
+      email:
+        type: string
+        required: true
+      token:
+        type: string
+        required: true
+  Signin:
+    type: object
+    properties:
+      username:
+        type: string
+        required: true
+      password:
+        type: string
+        required: true
+  Error:
+    type: object
+    properties:
+      title:
+        type: string
+  Account:
+    type: object
+    properties:
+      id:
+        type: string
+        description: account id
+      username:
+        type: string
+        description: username
+      email:
+        type: string
+        description: emai address
+      created:
+        type: string
+        description: created time
+  PaymentMethod:
+    type: object
+    properties:
+      type:
+        type: string
+        description: payment method type
+      status:
+        type: string
+        description: verified or not
+      isDefault:
+        type: boolean
+        description: default payment method or not
+      detail:
+        type: object
+        description: payment method parameters

@@ -1,0 +1,8 @@
+{
+  "db": {
+    "host": "MONGO_DB_HOST",
+    "user": "MONGO_DB_USER",
+    "pass": "MONGO_DB_PASS"
+  }
+}
+

@@ -1,0 +1,21 @@
+{
+  "name": "account-api",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.0",
+    "helmet": "^3.16.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "config": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node ."
+  }
+}
