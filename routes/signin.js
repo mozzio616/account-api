@@ -75,6 +75,7 @@ router.post('/', (req, res) => {
             msg = {
               username: username,
               email: docs.email,
+              orgs: docs.orgs,
               created: new Date(docs.created * 1000),
               id: docs._id
             };

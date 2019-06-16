@@ -16,7 +16,8 @@
     "name": "accounts",
     "col": {
       "signup": "signup",
-      "users": "users"
+      "users": "users",
+      "orgs": "orgs"
     }
   }
 }

@@ -26,5 +26,6 @@ app.use('/', require(__dirname + '/routes/accounts.js'));
 app.use('/signup', require(__dirname + '/routes/signup.js'));
 app.use('/verify', require(__dirname + '/routes/verify.js'));
 app.use('/signin', require(__dirname + '/routes/signin.js'));
+app.use('/orgs', require(__dirname + '/routes/orgs.js'));
 
 module.exports = app;
